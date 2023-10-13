@@ -11,6 +11,7 @@
 		87C42F542AD920C100B5D0C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C42F532AD920C100B5D0C4 /* ContentView.swift */; };
 		87C42F562AD920C200B5D0C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C42F552AD920C200B5D0C4 /* Assets.xcassets */; };
 		87C42F5A2AD920C200B5D0C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87C42F592AD920C200B5D0C4 /* Preview Assets.xcassets */; };
+		87C42F702AD9338200B5D0C4 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C42F6F2AD9338200B5D0C4 /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		87C42F552AD920C200B5D0C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87C42F572AD920C200B5D0C4 /* Recipetory.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Recipetory.entitlements; sourceTree = "<group>"; };
 		87C42F592AD920C200B5D0C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		87C42F6F2AD9338200B5D0C4 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		87C42F502AD920C100B5D0C4 /* Recipetory */ = {
 			isa = PBXGroup;
 			children = (
+				87C42F712AD9338800B5D0C4 /* Recipe */,
 				87C42F512AD920C100B5D0C4 /* RecipetoryApp.swift */,
 				87C42F532AD920C100B5D0C4 /* ContentView.swift */,
 				87C42F552AD920C200B5D0C4 /* Assets.xcassets */,
@@ -67,6 +70,14 @@
 				87C42F592AD920C200B5D0C4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		87C42F712AD9338800B5D0C4 /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				87C42F6F2AD9338200B5D0C4 /* Recipe.swift */,
+			);
+			path = Recipe;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87C42F702AD9338200B5D0C4 /* Recipe.swift in Sources */,
 				87C42F542AD920C100B5D0C4 /* ContentView.swift in Sources */,
 				87C42F522AD920C100B5D0C4 /* RecipetoryApp.swift in Sources */,
 			);
