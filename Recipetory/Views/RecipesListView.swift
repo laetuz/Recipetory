@@ -9,20 +9,50 @@ import SwiftUI
 
 struct RecipesListView: View {
     @EnvironmentObject private var recipeData: RecipeData
+    @State private var isPresenting = false
+    @State private var newRecipe = Recipe()
+    
     let category: MainInformation.Category
     private let listBgColor = AppColor.background
     private let listTextColor = AppColor.foreground
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(recipes) {
-                    recipe in 
-                    NavigationLink(recipe.mainInformation.name, destination: RecipeDetailView(recipe: recipe))
-                }
-                .listRowBackground(listBgColor)
-                .foregroundColor(listTextColor)
-            }.navigationTitle(navigationTitle)
+        List {
+            ForEach(recipes) {
+                recipe in
+                NavigationLink(recipe.mainInformation.name, destination: RecipeDetailView(recipe: recipe))
+            }
+            .listRowBackground(listBgColor)
+            .foregroundColor(listTextColor)
+        }
+        .navigationTitle(navigationTitle)
+        .toolbar(
+            content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {
+                            isPresenting = true
+                        }, label: {
+                            Image(systemName: "plus")
+                        }
+                )
+            }}
+        ).sheet(isPresented: $isPresenting) {
+            NavigationView {
+                ModifyRecipeView(recipe: $newRecipe).toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Dismiss") {
+                            isPresenting = false
+                        }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Add") {
+                            recipeData.recipes.append(newRecipe)
+                            isPresenting = false
+                        }
+                    }
+                }.navigationTitle("Add a New Recipe")
+            }
         }
     }
 }
