@@ -13,6 +13,10 @@ struct Recipe: Identifiable {
     var ingredients: [Ingredient]
     var directions: [Direction]
     
+    var isValid: Bool {
+        mainInformation.isValid && !ingredients.isEmpty && !directions.isEmpty
+    }
+    
     init(mainInformation: MainInformation, ingredients: [Ingredient], directions: [Direction]) {
         self.mainInformation = mainInformation
         self.ingredients = ingredients

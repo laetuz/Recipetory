@@ -13,6 +13,10 @@ struct MainInformation {
     var author: String
     var category: Category
     
+    var isValid: Bool {
+        !name.isEmpty && !description.isEmpty && !author.isEmpty
+    }
+    
     enum Category: String, CaseIterable {
         case breakfast = "Breakfast"
         case lunch = "Lunch"
