@@ -8,11 +8,38 @@
 import SwiftUI
 
 struct ModifyMainInformationView: View {
+    private let listBgColor = AppColor.background
+    private let listFgColor = AppColor.foreground
+    @Binding var mainInfo: MainInformation
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Form {
+            TextField("Recipe Name", text: $mainInfo.name).listRowBackground(listBgColor)
+            TextField("Author", text: $mainInfo.author).listRowBackground(listBgColor)
+            Section(header: Text("Description")) {
+                TextEditor(text: $mainInfo.description).listRowBackground(listBgColor)
+            }
+            Picker(
+                selection: $mainInfo.category,
+                label: HStack {
+                    Text("Category")
+                    Spacer()
+                    Text(mainInfo.category.rawValue)
+                }
+            ) {
+                ForEach(MainInformation.Category.allCases, id: \.self) {
+                    category in Text(category.rawValue)
+                }
+            }
+            .listRowBackground(listBgColor)
+            .pickerStyle(MenuPickerStyle())
+        }.foregroundColor(listFgColor)
     }
 }
 
-#Preview {
-    ModifyMainInformationView()
+struct ModifyMainInformationView_Previews: PreviewProvider {
+    static var previews: some View {
+        let mainInfo = Binding.constant(MainInformation(name: "martin", description: "Is a fighter", author: "Poe", category: MainInformation.Category.dessert))
+        return ModifyMainInformationView(mainInfo: mainInfo)
+    }
 }
