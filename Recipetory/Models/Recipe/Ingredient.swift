@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Ingredient {
+struct Ingredient: RecipeComponent {
     var name: String
     var quantity: Double
     var unit: Unit
