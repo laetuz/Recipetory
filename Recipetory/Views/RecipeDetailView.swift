@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RecipeDetailView: View {
-    let recipe: Recipe
+    @Binding var recipe: Recipe
+    // MutableStateOf isPresenting in Boolean value. Initial value is false
+    @State private var isPresenting = false
     
     private let listBgColor = AppColor.background
     private let listTextColor = AppColor.foreground
@@ -50,6 +52,35 @@ struct RecipeDetailView: View {
                 }
             }
         }.navigationTitle(recipe.mainInformation.name)
+        // 2. Set the value for mutableStateOf isPresenting: Boolean to True
+            .toolbar {
+                ToolbarItem {
+                    HStack {
+                        Button("Edit") {
+                            isPresenting = true
+                        }
+                    }
+                }
+                // 4. Back button bugfix from xcode 12.1
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("")
+                }
+            }
+        // 3. show sheet using the value of isPresenting
+            .sheet(isPresented: $isPresenting){
+                NavigationView {
+                    ModifyRecipeView(recipe: $recipe)
+                        .toolbar {
+                            ToolbarItem(placement: .confirmationAction) {
+                                HStack {
+                                    Button("Save") {
+                                        isPresenting = false
+                                    }
+                                }
+                            }
+                        }.navigationTitle("Edit Recipe")
+                }
+            }
     }
 }
 
@@ -57,7 +88,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     @State static var recipe = Recipe.testRecipes[0]
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(recipe: recipe)
+            RecipeDetailView(recipe: $recipe)
         }
     }
 }
