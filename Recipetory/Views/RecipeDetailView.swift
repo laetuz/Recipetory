@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeDetailView: View {
-    let recipe: Recipe
+    @Binding var recipe: Recipe
     
     private let listBgColor = AppColor.background
     private let listTextColor = AppColor.foreground
@@ -57,7 +57,7 @@ struct RecipeDetailView_Previews: PreviewProvider {
     @State static var recipe = Recipe.testRecipes[0]
     static var previews: some View {
         NavigationView {
-            RecipeDetailView(recipe: recipe)
+            RecipeDetailView(recipe: $recipe)
         }
     }
 }

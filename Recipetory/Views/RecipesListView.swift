@@ -20,7 +20,7 @@ struct RecipesListView: View {
         List {
             ForEach(recipes) {
                 recipe in
-                NavigationLink(recipe.mainInformation.name, destination: RecipeDetailView(recipe: recipe))
+                NavigationLink(recipe.mainInformation.name, destination: RecipeDetailView(recipe: binding(for: recipe)))
             }
             .listRowBackground(listBgColor)
             .foregroundColor(listTextColor)
@@ -65,6 +65,13 @@ extension RecipesListView {
     }
     var navigationTitle: String {
         "\(category.rawValue) Recipes"
+    }
+    
+    func binding(for recipe: Recipe) -> Binding<Recipe> {
+        guard let index = recipeData.index(of: recipe) else  {
+            fatalError("Recipe not found")
+        }
+        return $recipeData.recipes[index]
     }
 }
 
