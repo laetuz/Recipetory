@@ -59,6 +59,12 @@ struct RecipeDetailView: View {
                         Button("Edit") {
                             isPresenting = true
                         }
+                        //creating favorite button with the boolean state
+                        Button(action: {
+                            recipe.isFavorite.toggle()
+                        }) {
+                            Image(systemName: recipe.isFavorite ? "heart.fill": "heart")
+                        }
                     }
                 }
                 // 4. Back button bugfix from xcode 12.1
