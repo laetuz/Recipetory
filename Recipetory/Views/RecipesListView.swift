@@ -49,6 +49,9 @@ struct RecipesListView: View {
                     ToolbarItem(placement: .confirmationAction) {
                         if newRecipe.isValid {
                             Button("Add") {
+                                if case .favorites = viewStyle {
+                                    newRecipe.isFavorite = true
+                                }
                                 recipeData.addRecipe(recipe: newRecipe)
                                 isPresenting = false
                             }
