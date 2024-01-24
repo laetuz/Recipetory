@@ -12,7 +12,8 @@ struct RecipeDetailView: View {
     // MutableStateOf isPresenting in Boolean value. Initial value is false
     @State private var isPresenting = false
     
-   @AppStorage("listBgColor") private var listBgColor = AppColor.background
+    @AppStorage("hideOptionalSteps") private var hideOptionalSteps: Bool = false
+    @AppStorage("listBgColor") private var listBgColor = AppColor.background
     @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
     
     var body: some View {
@@ -43,8 +44,13 @@ struct RecipeDetailView: View {
                         index in let ingredients = recipe.directions[index]
                         HStack {
                             let direction = recipe.directions[index]
-                            Text("\(index + 1). ").bold()
-                            Text("\(direction.isOptional ? "(Optional " : "") \(ingredients.description)")
+                            if direction.isOptional && hideOptionalSteps { EmptyView() } else {
+                                HStack {
+                                    let index = recipe.index(of: direction, excludingOptionalDirections: hideOptionalSteps) ?? 0
+                                    Text("\(index + 1). ").bold()
+                                    Text("\(direction.isOptional ? "(Optional) " : "")\(direction.description)")
+                                }.foregroundColor(listTextColor)
+                            }
                         }
                         .foregroundColor(listTextColor)
                     }
