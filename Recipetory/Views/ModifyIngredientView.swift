@@ -18,7 +18,7 @@ struct ModifyIngredientView: ModifyComponentView {
     }
     
     private let listBackgroundColor = AppColor.background
-    private let listTextColor = AppColor.foreground
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
     
     var body: some View {
         VStack {

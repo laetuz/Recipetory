@@ -12,8 +12,8 @@ struct RecipeDetailView: View {
     // MutableStateOf isPresenting in Boolean value. Initial value is false
     @State private var isPresenting = false
     
-    private let listBgColor = AppColor.background
-    private let listTextColor = AppColor.foreground
+   @AppStorage("listBgColor") private var listBgColor = AppColor.background
+    @AppStorage("listTextColor") private var listTextColor = AppColor.foreground
     
     var body: some View {
         VStack {
