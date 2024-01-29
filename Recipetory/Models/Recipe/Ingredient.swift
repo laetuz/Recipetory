@@ -27,7 +27,7 @@ struct Ingredient: RecipeComponent {
         }
     }
     
-    enum Unit: String, CaseIterable {
+    enum Unit: String, CaseIterable, Codable {
         case oz = "Ounces"
         case g = "Grams"
         case cups = "Cups"

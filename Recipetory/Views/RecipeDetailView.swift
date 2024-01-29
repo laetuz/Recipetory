@@ -92,6 +92,9 @@ struct RecipeDetailView: View {
                             }
                         }.navigationTitle("Edit Recipe")
                 }
+                .onDisappear {
+                    RecipeData().saveRecipes()
+                }
             }
     }
 }

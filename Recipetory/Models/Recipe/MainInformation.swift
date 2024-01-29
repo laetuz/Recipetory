@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MainInformation {
+struct MainInformation: Codable {
     var name: String
     var description: String
     var author: String
@@ -17,7 +17,7 @@ struct MainInformation {
         !name.isEmpty && !description.isEmpty && !author.isEmpty
     }
     
-    enum Category: String, CaseIterable {
+    enum Category: String, CaseIterable, Codable {
         case breakfast = "Breakfast"
         case lunch = "Lunch"
         case dinner = "Dinner"
